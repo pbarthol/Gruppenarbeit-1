@@ -1,7 +1,8 @@
-##Aufgabe
-###Create a note application
-##Main page[[https://github.com/username/repository/blob/master/img/notes-main-page.png|alt=main page]]
+##Project: Notes application
+###main page - list of notes with filters
+###details page - edit page details
 
+##Project Administration:
 - create a branch with name 'Abgabe'
 ###send an email with content:
 - subject: [CAS FEE] Abgabe {{Gruppennummer}}
