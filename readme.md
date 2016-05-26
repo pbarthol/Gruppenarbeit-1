@@ -1,6 +1,7 @@
 ##Project: Notes application
-###main page - list of notes with filters
-###details page - edit page details
+###application should whenever possible not bee a single page application
+- main page - list of notes with filters
+- details page - edit page details
 
 ##Project Administration:
 - create a branch with name 'Abgabe'
@@ -10,7 +11,6 @@
 - link to readme
 - collaborators in email cc
 
-###application should whenever possible not bee a single page application
 
 ##Project Evaluation Criterias:
 ###Common:
@@ -32,7 +32,29 @@
 - handle Javascript Errors
 
 ##Project Organization
-###week 1
+###week 1 - 4.05.2016
 - form a team in 2 or 3 members
-###week 2
+###week 2 - 11.05.2016
+- create Html and Css
+###week 3 - 18.05.2016
 - focus on main page
+- show notes list
+- filter list
+- sort list
+- switch css style
+- create new note (add to list)
+###week 4 - 25.05.2016
+- manage notes in local storage
+- navigate between main page and details page
+- implement details page
+###week 5 - 1.06.2016
+- use Javascript Patterns
+- use Es6 Modules and Classes
+###week 6 - 8.06.2016
+- create node server for Data Management
+###week 7 - 15.06.2016
+- implement node rest api
+- connect client to rest api
+###week 8 - 22.06.2016
+- finish project (Fr 24.06.2016)
+- deploy project (email administration)
