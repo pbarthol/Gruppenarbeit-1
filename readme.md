@@ -1,7 +1,7 @@
 ###Project: Notes application
 ####application should whenever possible not bee a single page application
 - main page - list of notes with filters
-- ![Main page](https://github.com/pbarthol/Gruppenarbeit-1/blob/master/img/notes-main-page.PNG) -- details page - edit page details ![Details page](https://github.com/pbarthol/Gruppenarbeit-1/blob/master/img/notes-details-page.PNG)
+- <img width="150px" src="https://github.com/pbarthol/Gruppenarbeit-1/blob/master/img/notes-main-page.PNG" alt="main page" > -- details page - edit page details <img width="150px" src="https://github.com/pbarthol/Gruppenarbeit-1/blob/master/img/notes-details-page.PNG" alt="details page" >
 
 ###Project Administration:
 - create a branch with name 'Abgabe'
