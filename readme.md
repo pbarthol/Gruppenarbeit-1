@@ -1,7 +1,9 @@
 ###Project: Notes application
 ####application should whenever possible not bee a single page application
 - main page - list of notes with filters
+- <img src="img/notes-main-page.png" alt="main page">
 - details page - edit page details
+- <img src="img/notes-detail-page.png" alt="" >
 
 ###Project Administration:
 - create a branch with name 'Abgabe'
