@@ -1,8 +1,10 @@
 
- var notes_json = {
- "notes": [
+ var notes_for_json =
+ //{"notes": */
+     [
+
  {
- "id": "01",
+ "id": 1,
  "finished": true,
  "title": "Lore Ipsum 1",
  "content": "1Bla bla bla bla ",
@@ -12,7 +14,7 @@
  "dateCreated": "2016-05-20"
  },
  {
- "id": "02",
+ "id": 2,
  "finished": false,
  "title": "Lore Ipsum 2",
  "content": "2Bla bla bla bla ",
@@ -22,7 +24,7 @@
  "dateCreated": "2016-05-21"
  },
  {
- "id": "03",
+ "id": 3,
  "finished": false,
  "title": "Lore Ipsum 3",
  "content": "3Bla bla bla bla ",
@@ -31,10 +33,11 @@
  "dateEnd": "",
  "dateCreated": "2016-05-22"
  }
- ]};
- var notes = [];
+ ]
+ /*};*/
 
 
+ //var notes = [];
 
 Handlebars.registerHelper('finished_label', function () {
     finished = (this.finished === true) ? "finished" : "not finished";
@@ -54,6 +57,8 @@ var sortby = 'dateDue';
 var createNotesHtml = Handlebars.compile(document.getElementById("notes-template").innerText);
 
 function getNotesFiltered(filter) {
+    var notes = JSON.parse(localStorage.getItem('notes'));
+
     if (filter == 'all') {
         return notes;
     }
@@ -118,41 +123,16 @@ function showFilteredAndSortedNotes(sortBy) {
     if (classlist.indexOf("active")>-1)
         // Sort by Priority
         $("#notes").html(createNotesHtml(filtered_notes.sort(compareNotesPriority)));
-  
-    /*switch (filter) {
-        case 'finished':
-            filtered_notes = getNotesFiltered('finished');
-            break;
-        case 'undone':
-            filtered_notes = getNotesFiltered('undone');
-            break;
-        case 'all':
-            filtered_notes = getNotesFiltered('all');
-            break;
-        default:
-            filtered_notes = getNotesFiltered('all');
-
-    switch (sortby) {
-        case 'all':
-            $("#notes").html(createNotesHtml(filtered_notes.sort(compareNotesDateCreated)));
-            break;
-        case 'dateDue':
-            $("#notes").html(createNotesHtml(filtered_notes.sort(compareNotesDateDue)));
-            break;
-        case 'dateCreated':
-            $("#notes").html(createNotesHtml(filtered_notes.sort(compareNotesDateCreated)));
-            break;
-        case 'priority':
-            $("#notes").html(createNotesHtml(filtered_notes.sort(compareNotesPriority)));
-            break;
-    }
-    */
 
  }
 
-function createNewNote(){
-    window.location.href = "edit_note.html";
+function openNewNotDialog(){
+    window.location.href = "edit_note.html?note-di=NEW";
 }
+
+ function editNote(noteId) {
+     window.location.href = "edit_note.html?note-id=" + (noteId).toString();
+ }
 
 function renderNotes() {
     showFilteredAndSortedNotes();
@@ -166,7 +146,7 @@ $(function () {
     });
 
     $("#btn-add-note").on("click", function () {
-        createNewNote()});
+        openNewNotDialog()});
 
     $("#btn-all").on("click", function () {
         $("#btn-all, #btn-create-date").addClass("active");
@@ -205,6 +185,7 @@ $(function () {
     // activate all button and filter by create date
     $("#btn-all").addClass("active");
     $("#btn-create-date").addClass("active");
-    notes = notes_json["notes"];
+    //notes = notes_json["notes"];
+    localStorage.setItem('notes', JSON.stringify(notes_for_json));
     renderNotes();
 }); 
