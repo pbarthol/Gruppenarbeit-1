@@ -1,4 +1,4 @@
- /* Grundlayout */
+/* Grundlayout */
 
 body {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -11,7 +11,6 @@ p, h1, h2, h3 {
 }
 
 header,
-nav,
 main,
 aside,
 footer {
@@ -19,7 +18,7 @@ footer {
 }
 
 .header {
-    background-color: #32CD32;
+    background-color: #dedede;
     height: 60px;
 }
 .header h1 {
@@ -33,7 +32,7 @@ footer {
 
 .note h1 {
     font-size: 1.2em;
-    color: #32CD32;
+    color: #333;
     display: block;
     margin: 0;
     padding: 1em 0 0 0;
@@ -47,7 +46,7 @@ footer {
 .filters-content {
     box-sizing: border-box;
     padding: 0;
-    width: 70%;
+    width: 60%;
     float: left;
 }
 .filters-content p {
@@ -57,7 +56,7 @@ footer {
 }
 .filters-aside {
     box-sizing: border-box;
-    width: 30%;
+    width: 40%;
     min-width: 200px;
     float: right;
 }
@@ -93,7 +92,7 @@ header img, header svg {
     display: none;
 }
 
-.header .icons .fa-pencil-square-o, .header .icons .fa-sort-alpha-asc, .header .icons .fa-cog, .header .icons .fa-list, .header .icons .fa-newspaper-o  {
+.header .icons .fa-pencil-square-o, .header .icons .fa-sort-alpha-asc, .header .icons .fa-cog {
     color: #fff;
     font-size: 2.4em;
     padding: 0.2em 0 0 0.5em;
@@ -106,13 +105,13 @@ svg#logo path, header img.svg path  {
 }
 svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
     /* fill: #eeff66; */
-    fill: #c8f1c8;
+    fill: #333;
 }
 
 .content {
     background-color: #fff;
 }
-.date {
+.date, .editor-label {
     background-color: #fff;
     box-sizing: border-box;
     padding: 1em;
@@ -127,19 +126,19 @@ svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
 .date .urgent {
     color: orangered;
 }
-.note {
+.note, .editor-field {
     background-color: #fff;
     box-sizing: border-box;
     padding: 1em;
     margin: 0.2em 0;
     width: 80%;
 }
-.note-body {
+.note-body, .edit-body {
     margin: 0.4em 0;
     border: 2px solid #efefef;
  }
 .note-body:hover {
-    border: 2px solid #32CD32;
+    border: 2px solid #333;
 }
 .note-body:first-child {
     margin-top: 0.4em;
@@ -170,18 +169,13 @@ svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
      float: right;
 }
 .note-info .fa-bolt {
-    color: #32CD32;
+    color: #333;
     font-size: 2.5em;
-}
-.note-info .fa-list .fa-newspaper-o {
-    color: #32CD32;
-    font-size: 1em;
 }
 
 .edit {
     background-color: #fff;
     box-sizing: border-box;
-    width: 20%;
     min-width: 80px;
     float: right;
 }
@@ -201,7 +195,7 @@ svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
      background: #fff;
      border-radius: 5px;
      font-size: 1.5em;
-     width: 100%;
+     width: 54px;
  }
 .edit .button .fa {
     padding: 0 0.5em 0 0;
@@ -227,7 +221,7 @@ svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
     font-size: 1.2em;
  }
 .filters .button.active {
-    background: #32CD32;
+    background: #333;
     color: #fff;
 }
 .create .button {
@@ -237,6 +231,15 @@ svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
     height: 45px;
     font-size: 1em;
     min-width: 200px;
+}
+.editor-field .button {
+    background: #fff;
+    border-radius: 5px;
+    margin: 0.5em;
+    height: 45px;
+    font-size: 1em;
+    width: 200px;
+    text-align: center;
 }
 
 .footer {
@@ -253,10 +256,9 @@ svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
                             Firefox >=22, IE >=11 */
 }
 
-input[type="text"], [type="date"],  select {
-    /*padding: 0.5em 1em;*/
-    /*padding: 0 0.5em 0 0.5em;*/
-    margin: 0.5em 0 0.5em 0;
+input[type="text"], textarea, select {
+    padding: 0.5em 1em;
+    margin: 0.5em 1em 0 0;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -270,31 +272,15 @@ input[type="checkbox"] {
     margin: 0 0.7em 0 0.1em;
 }
 
-option { background: rgba(50, 205, 50, 0.27); font-style: italic; }
-/* select { background: #32CD32; font-style: italic; } */
-
-.edit-note-content{
-    display: flex;
+.editor-field input[type="text"], .editor-field textarea {
+    float: left;
+    width: 90%;
 }
 
- .edit-note-content > label{
-     flex: 0 0 20%;
-     margin: 0.5em 0.5em 0 0;
- }
-
- .edit-note-content > textarea {
-     flex: 0 0 70%;
-     padding: 0 0.5em 0 0.5em;
- }
-
-.note-detail-footer {
-    width:100%;
-    display:flex;
-    overflow: auto;
-    white-space: nowrap;
-    margin:0px auto;
+.editor-label h2 {
+    font-size: 1.2em;
+    font-wight: normal;
 }
 
-/* make button float on the right */
-.filters.button-right { flex:0 0 70%; }
-.filters.button { flex: 0 0 20% }
+option { background: rgba(239, 239, 239, 0.27); font-style: italic; }
+/* select { background: #333; font-style: italic; } */

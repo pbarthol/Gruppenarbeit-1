@@ -3,7 +3,7 @@
 body {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 1em;
-    color: #555555;
+    color: #777;
 }
 
 p, h1, h2, h3 {
@@ -18,7 +18,7 @@ footer {
 }
 
 .header {
-    background-color: #C20000;
+    background-color: #32CD32;
     height: 60px;
 }
 .header h1 {
@@ -32,7 +32,7 @@ footer {
 
 .note h1 {
     font-size: 1.2em;
-    color: #C20000;
+    color: #32CD32;
     display: block;
     margin: 0;
     padding: 1em 0 0 0;
@@ -46,7 +46,7 @@ footer {
 .filters-content {
     box-sizing: border-box;
     padding: 0;
-    width: 70%;
+    width: 60%;
     float: left;
 }
 .filters-content p {
@@ -56,7 +56,7 @@ footer {
 }
 .filters-aside {
     box-sizing: border-box;
-    width: 30%;
+    width: 40%;
     min-width: 200px;
     float: right;
 }
@@ -105,13 +105,13 @@ svg#logo path, header img.svg path  {
 }
 svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
     /* fill: #eeff66; */
-    fill: rgba(58, 0, 0, 0.86);
+    fill: #c8f1c8;
 }
 
 .content {
     background-color: #fff;
 }
-.date {
+.date, .editor-label {
     background-color: #fff;
     box-sizing: border-box;
     padding: 1em;
@@ -126,19 +126,19 @@ svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
 .date .urgent {
     color: orangered;
 }
-.note {
+.note, .editor-field {
     background-color: #fff;
     box-sizing: border-box;
     padding: 1em;
     margin: 0.2em 0;
     width: 80%;
 }
-.note-body {
+.note-body, .edit-body {
     margin: 0.4em 0;
     border: 2px solid #efefef;
  }
 .note-body:hover {
-    border: 2px solid #C20000;
+    border: 2px solid #32CD32;
 }
 .note-body:first-child {
     margin-top: 0.4em;
@@ -169,21 +169,37 @@ svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
      float: right;
 }
 .note-info .fa-bolt {
-    color: #C20000;
+    color: #efefef;
     font-size: 2.5em;
 }
+.note-info .fa-bolt.prio-active {
+    color: #32CD32;
+}
+.note-info:hover i  {
+    color: #32CD32;
+}
+/*
+.note-info i:hover, .note-info i:hover ~ i {
+    color: #efefef;
+}
+*/
+
+.note-info a:hover > i, .note-info a:hover > i ~ a > i  {
+    color: #efefef;
+}
+
+
 
 .edit {
     background-color: #fff;
     box-sizing: border-box;
-    width: 20%;
     min-width: 80px;
     float: right;
 }
 
 .button {
     border: none;
-    color: #555;
+    color: #777;
     text-align: left;
     text-decoration: none;
     display: inline-block;
@@ -192,11 +208,13 @@ svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
     cursor: pointer;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
 }
+
 .edit .button {
      background: #fff;
      border-radius: 5px;
      font-size: 1.5em;
-     width: 100%;
+     width: 54px;
+     margin-left: 1em;
  }
 .edit .button .fa {
     padding: 0 0.5em 0 0;
@@ -222,7 +240,7 @@ svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
     font-size: 1.2em;
  }
 .filters .button.active {
-    background: #C20000;
+    background: #32CD32;
     color: #fff;
 }
 .create .button {
@@ -232,6 +250,15 @@ svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
     height: 45px;
     font-size: 1em;
     min-width: 200px;
+}
+.editor-field .button {
+    background: #fff;
+    border-radius: 5px;
+    margin: 0.5em;
+    height: 45px;
+    font-size: 1em;
+    width: 200px;
+    text-align: center;
 }
 
 .footer {
@@ -248,7 +275,7 @@ svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
                             Firefox >=22, IE >=11 */
 }
 
-input[type="text"], select {
+input[type="text"], textarea, select {
     padding: 0.5em 1em;
     margin: 0.5em 1em 0 0;
     display: inline-block;
@@ -264,7 +291,15 @@ input[type="checkbox"] {
     margin: 0 0.7em 0 0.1em;
 }
 
-option {
-    background: rgba(172, 0, 0, 0.22);
-    font-style: italic; }
-/* select { background: #C20000; font-style: italic; } */
+.editor-field input[type="text"], .editor-field textarea {
+    float: left;
+    width: 90%;
+}
+
+.editor-label h2 {
+    font-size: 1.2em;
+    font-wight: normal;
+}
+
+option { background: rgba(50, 205, 50, 0.27); font-style: italic; }
+/* select { background: #32CD32; font-style: italic; } */

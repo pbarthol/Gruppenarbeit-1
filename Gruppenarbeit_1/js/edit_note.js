@@ -6,6 +6,7 @@ function saveNote(){
 }
 
 function addNewNote(){
+    // get the next id = max(id) + 1
     pass;
 }
 

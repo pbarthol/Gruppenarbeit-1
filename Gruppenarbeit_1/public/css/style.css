@@ -1,9 +1,23 @@
-/* Grundlayout */
+/* DatePicker CSS*/
+@import "datepicker/datepicker.css" screen;
+@import "datepicker/datepicker.date.css" screen;
 
+.picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected {
+    background: #32CD32;
+    color: #ffffff;
+}
+.picker__day--highlighted {
+    border-color: #32CD32;
+}
+.picker__day--infocus:hover, .picker__day--outfocus:hover {
+    background: rgba(50, 205, 50, 0.22);
+}
+
+/* Grundlayout */
 body {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 1em;
-    color: #555555;
+    color: #777;
 }
 
 p, h1, h2, h3 {
@@ -18,7 +32,7 @@ footer {
 }
 
 .header {
-    background-color: #dedede;
+    background-color: #32CD32;
     height: 60px;
 }
 .header h1 {
@@ -32,7 +46,7 @@ footer {
 
 .note h1 {
     font-size: 1.2em;
-    color: #333;
+    color: #32CD32;
     display: block;
     margin: 0;
     padding: 1em 0 0 0;
@@ -46,7 +60,7 @@ footer {
 .filters-content {
     box-sizing: border-box;
     padding: 0;
-    width: 70%;
+    width: 60%;
     float: left;
 }
 .filters-content p {
@@ -56,7 +70,7 @@ footer {
 }
 .filters-aside {
     box-sizing: border-box;
-    width: 30%;
+    width: 40%;
     min-width: 200px;
     float: right;
 }
@@ -105,13 +119,13 @@ svg#logo path, header img.svg path  {
 }
 svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
     /* fill: #eeff66; */
-    fill: #333;
+    fill: #c8f1c8;
 }
 
 .content {
     background-color: #fff;
 }
-.date {
+.date, .editor-label {
     background-color: #fff;
     box-sizing: border-box;
     padding: 1em;
@@ -123,22 +137,22 @@ svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
 .date .finished-date {
     margin-left:1em;
 }
-.date .urgent {
+.date .urgent, .delete {
     color: orangered;
 }
-.note {
+.note, .editor-field {
     background-color: #fff;
     box-sizing: border-box;
     padding: 1em;
     margin: 0.2em 0;
     width: 80%;
 }
-.note-body {
+.note-body, .edit-body {
     margin: 0.4em 0;
     border: 2px solid #efefef;
  }
 .note-body:hover {
-    border: 2px solid #333;
+    border: 2px solid #32CD32;
 }
 .note-body:first-child {
     margin-top: 0.4em;
@@ -159,31 +173,43 @@ svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
     min-width: 400px;
     text-align: left;
 }
+
 .note-info {
-     background-color: #fff;
-     box-sizing: border-box;
-     padding: 0;
-     margin: 0 1.5em 0 0;
-     /* width: 10%; */
-     min-width: 200px;
-     float: right;
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0 1.5em 0 0;
+    min-width: 200px;
+    float: right;
 }
+
 .note-info .fa-bolt {
-    color: #333;
+    color: #efefef;
     font-size: 2.5em;
+}
+
+.note-info .fa-bolt.prio-active {
+    color: #32CD32;
+}
+
+.note-info a {
+    text-decoration: none;
+}
+
+#note-editor .note-info  {
+    float: left;
 }
 
 .edit {
     background-color: #fff;
     box-sizing: border-box;
-    width: 20%;
     min-width: 80px;
     float: right;
 }
 
 .button {
     border: none;
-    color: #555;
+    color: #777;
     text-align: left;
     text-decoration: none;
     display: inline-block;
@@ -192,15 +218,18 @@ svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
     cursor: pointer;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
 }
+
 .edit .button {
      background: #fff;
      border-radius: 5px;
      font-size: 1.5em;
-     width: 100%;
+     width: 54px;
+     margin-left: 1em;
  }
 .edit .button .fa {
     padding: 0 0.5em 0 0;
 }
+
 .filters .button {
     background: #fff;
     border-radius: 3px;
@@ -222,7 +251,7 @@ svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
     font-size: 1.2em;
  }
 .filters .button.active {
-    background: #333;
+    background: #32CD32;
     color: #fff;
 }
 .create .button {
@@ -233,14 +262,43 @@ svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
     font-size: 1em;
     min-width: 200px;
 }
+.editor-field .button {
+    background: #fff;
+    border-radius: 5px;
+    margin: 0.5em;
+    height: 45px;
+    font-size: 1em;
+    width: 200px;
+    text-align: center;
+}
+
+.editor-field .button.reset{
+    width: 90px;
+
+}
+
+.editor-field .button.finished_button{
+     border-radius: 5px;
+     font-size: 1.8em;
+     width: 45px;
+     height: 45px;
+     border: 1px solid #ccc;
+     box-shadow: none;
+     padding: 0;
+     margin: 0;
+ }
+
+.editor-field p {
+    margin: 1em 0 1em 0.2em;
+    font-size: 1.2em;
+}
 
 .footer {
     background: #efefef;
     padding: 1em;
 }
 .row {
-    display: -webkit-box;  /* OLD: Chrome <=20, iOS <=6,
-                            Safari <=6 */
+    display: -webkit-box;  /* OLD: Chrome <=20, iOS <=6, Safari <=6 */
     display: -moz-box;     /* OLD: Firefox <=21 */
     display: -ms-flexbox;  /* TWEENER: IE 10 */
     display: -webkit-flex; /* NEW: Chrome 21-28 */
@@ -248,7 +306,13 @@ svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
                             Firefox >=22, IE >=11 */
 }
 
-input[type="text"], select {
+.invisible {
+    opacity: 0.25;
+    filter: alpha(opacity=25); /* For IE8 and earlier */
+    cursor: default;
+}
+
+input[type="text"], textarea, select {
     padding: 0.5em 1em;
     margin: 0.5em 1em 0 0;
     display: inline-block;
@@ -259,10 +323,23 @@ input[type="text"], select {
     font-size: 1em;
     min-width: 226px;
 }
+textarea {
+    font-size: 1.2em;
+}
 
 input[type="checkbox"] {
     margin: 0 0.7em 0 0.1em;
 }
 
-option { background: rgba(239, 239, 239, 0.27); font-style: italic; }
-/* select { background: #333; font-style: italic; } */
+.editor-field input[type="text"], .editor-field textarea {
+    float: left;
+    width: 90%;
+}
+
+.editor-label h2 {
+    font-size: 1.2em;
+    font-wight: normal;
+}
+
+option { background: rgba(50, 205, 50, 0.27); font-style: italic; }
+/* select { background: #32CD32; font-style: italic; } */

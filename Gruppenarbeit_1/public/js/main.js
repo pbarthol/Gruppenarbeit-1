@@ -29,7 +29,7 @@ Handlebars.registerHelper("priority_icons", function () {
     }
     return new Handlebars.SafeString(priority);
 });
-
+/*
 Handlebars.registerHelper("priority_icons_edit", function (note_id) {
     priority_edit = "";
     var prio_num, prio_num_invert, class_prio_active;
@@ -52,7 +52,7 @@ Handlebars.registerHelper("button_finish", function (note_id) {
     var button = (!this.finished)? $("<button class=\"button\" id=\"btn_finish_" + note_id +  "\"></button>").html(button_content).attr("onclick", "changeNoteItem('" + note_id + "','finished'," + !this.finished+ "); saveNotes()") : $("<button class=\"button\" id=\"btn_finish_" + note_id +  "\"></button>").html(button_content).addClass("invisible").attr("disabled","disabled");
     return $('<div></div>').append(button).html();
 });
-
+*/
 var filter = 'all';
 var sortby = 'dateDue';
 var createNotesHtml = Handlebars.compile(document.getElementById("notes-template").innerText);
@@ -152,6 +152,20 @@ function deleteNote(id) {
 function renderSortedNotes(sb) {
     var objNotes = JSON.parse(localStorage.getItem("notes"));
     notes = objNotes;
+    
+    $.ajax({
+        dataType:  "json",
+        method: "GET",
+        url: "/notes/",
+        //data: { name: "hawaii", token : token }
+    }).done(function( msg ) {
+        output.text(JSON.stringify(msg));
+    }).fail(function( msg ) {
+        $("#notes").html("<p>JSON.stringify(msg)</p>");
+        //output.text(JSON.stringify(msg));
+    });
+
+
     if ( (notes) && (notes.length > 0) ) {
         sortby = (sb) ? sb : sortby;
         switch (sortby) {
