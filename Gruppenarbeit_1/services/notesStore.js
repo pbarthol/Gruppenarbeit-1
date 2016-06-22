@@ -1,6 +1,7 @@
 var Datastore = require('nedb');
 var db = new Datastore({ filename: './data/notes.db', autoload: true });
 
+/*
 var notes_for_db =
 [
 
@@ -40,6 +41,7 @@ notes_for_db.forEach(function(note) {
     db.insert(note, function (err, newDoc) {
     });
 })
+*/
 
 function Note(id, finished, title, content, priority, dateDue, dateEnd, dateCreated)
 {
@@ -72,7 +74,7 @@ function publicRemove(id, callback) {
 
 function publicGet(id, callback)
 {
-    db.findOne({ _id: id, }, function (err, doc) {
+    db.findOne({ id: id, }, function (err, doc) {
         callback( err, doc);
     });
 }
@@ -80,7 +82,8 @@ function publicGet(id, callback)
 function publicAll(callback)
 {
     db.find({}, function (err, docs) {
-        callback( err, docs);
+        //callback( err, docs);
+       callback( err, docs );
     });
 }
 
