@@ -18,7 +18,7 @@ Handlebars.registerHelper("finished_label", function () {
 
 Handlebars.registerHelper("finished_button", function (note_id) {
     button = ( this.finished ) ? "<i class=\"fa fa-check fa-fw\"></i>" : "";
-    finished_btn = "<button class=\"button finished_button\" name=\"finished\" id=\"{{this.id}}_finished\" onclick=\"changeNoteItem('" + note_id + "','finished'," + !this.finished+ "); renderEditor('" + note_id + "') \">" + button + "</button>";
+    finished_btn = "<button class=\"button finished_button\" name=\"finished\" id=\"{{this._id}}_finished\" onclick=\"changeNoteItem('" + note_id + "','finished'," + !this.finished+ "); renderEditor('" + note_id + "') \">" + button + "</button>";
     return new Handlebars.SafeString(finished_btn);
 });
 

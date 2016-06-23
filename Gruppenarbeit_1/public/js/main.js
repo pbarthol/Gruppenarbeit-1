@@ -18,7 +18,7 @@ Handlebars.registerHelper("finished_label", function () {
 
 Handlebars.registerHelper("finished_button", function (note_id) {
     button = ( this.finished ) ? "<i class=\"fa fa-check fa-fw\"></i>" : "";
-    finished_btn = "<button class=\"button finished_button\" name=\"finished\" id=\"{{this.id}}_finished\" onclick=\"changeNoteItem('" + note_id + "','finished'," + !this.finished+ "); renderEditor('" + note_id + "') \">" + button + "</button>";
+    finished_btn = "<button class=\"button finished_button\" name=\"finished\" id=\"{{this._id}}_finished\" onclick=\"changeNoteItem('" + note_id + "','finished'," + !this.finished+ "); renderEditor('" + note_id + "') \">" + button + "</button>";
     return new Handlebars.SafeString(finished_btn);
 });
 
@@ -89,7 +89,7 @@ function createUID() {
 function getNoteByID(id) {
     if (id > '0') {
         for (i = 0; i < notes.length; i++) {
-            if (notes[i].id == id) {
+            if (notes[i]._id == id) {
                 return notes[i];
             }
         }
@@ -176,21 +176,21 @@ function renderSortedNotes(sb) {
 function renderEditor(id) {
     var note = (id > "") ? getNoteByID(id) : getNoteByID(0);
     // get Note from server
+    /*
     $.ajax({
         dataType:  "json",
         method: "GET",
         url: "/notes/edit/" + id,
         //data: { id : id }
+        // The generated request url looks like: Request URL:http://127.0.0.1:3001/notes/edit/2IPojvnomnWyLdOc
     }).done(function( msg ) {
         notes = msg;
-
-        renderSortedNotes();
     });
+    */
     
-    
-    //$("main").hide();
+    $("main").hide();
     $("#header-sorting").hide();
-    //$("#note-editor").show().html(createEditorHtml(note));
+    $("#note-editor").show().html(createEditorHtml(note));
     $(".datepicker").pickadate({
         formatSubmit: 'yyyy-mm-dd',
         hiddenName: true
