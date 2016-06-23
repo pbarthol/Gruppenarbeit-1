@@ -18,14 +18,8 @@ module.exports.createNote = function(req, res)
 module.exports.getNote = function(req, res)
 {
     store.get(req.params.id, function(err, note) {
-        res.format({
-            'text/html': function(){
-                res.render("edit_note", note);
-            },
-            'application/json': function(){
-                res.json(note);
-            }
-        });
+        var note = note;
+        res.json(note);
     });
 };
 

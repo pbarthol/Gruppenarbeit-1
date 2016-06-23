@@ -153,6 +153,7 @@ function renderSortedNotes(sb) {
     //var objNotes = JSON.parse(localStorage.getItem("notes"));
     //notes = objNotes;
     //var token = undefined;
+    console.log(notes);
     if ( (notes) && (notes.length > 0) ) {
         sortby = (sb) ? sb : sortby;
         switch (sortby) {
@@ -174,9 +175,22 @@ function renderSortedNotes(sb) {
 
 function renderEditor(id) {
     var note = (id > "") ? getNoteByID(id) : getNoteByID(0);
-    $("main").hide();
+    // get Note from server
+    $.ajax({
+        dataType:  "json",
+        method: "GET",
+        url: "/notes/edit/" + id,
+        //data: { id : id }
+    }).done(function( msg ) {
+        notes = msg;
+
+        renderSortedNotes();
+    });
+    
+    
+    //$("main").hide();
     $("#header-sorting").hide();
-    $("#note-editor").show().html(createEditorHtml(note));
+    //$("#note-editor").show().html(createEditorHtml(note));
     $(".datepicker").pickadate({
         formatSubmit: 'yyyy-mm-dd',
         hiddenName: true

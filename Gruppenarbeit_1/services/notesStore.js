@@ -74,7 +74,7 @@ function publicRemove(id, callback) {
 
 function publicGet(id, callback)
 {
-    db.findOne({ id: id, }, function (err, doc) {
+    db.findOne({ _id: id, }, function (err, doc) {
         callback( err, doc);
     });
 }
