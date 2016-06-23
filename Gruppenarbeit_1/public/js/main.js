@@ -1,7 +1,7 @@
 var notes = [];
 
 function Note() {
-    this.id = createUID();
+    this._id = createUID();
     this.finished = false;
     this.title = "";
     this.content = "";
@@ -49,7 +49,7 @@ Handlebars.registerHelper("button_edit", function (note_id) {
 
 Handlebars.registerHelper("button_finish", function (note_id) {
     var button_content = "<i class=\"fa fa-check fa-fw\"></i>";
-    var button = (!this.finished)? $("<button class=\"button\" id=\"btn_finish_" + note_id +  "\"></button>").html(button_content).attr("onclick", "changeNoteItem('" + note_id + "','finished'," + !this.finished+ "); saveNotes()") : $("<button class=\"button\" id=\"btn_finish_" + note_id +  "\"></button>").html(button_content).addClass("invisible").attr("disabled","disabled");
+    var button = (!this.finished)? $("<button class=\"button\" id=\"btn_finish_" + note_id +  "\"></button>").html(button_content).attr("onclick", "changeNoteItem('" + note_id + "','finished'," + !this.finished+ "); saveNote(note_id)") : $("<button class=\"button\" id=\"btn_finish_" + note_id +  "\"></button>").html(button_content).addClass("invisible").attr("disabled","disabled");
     return $('<div></div>').append(button).html();
 });
 
@@ -79,12 +79,6 @@ function getNotesFiltered() {
     }
 }
 
-function createUID() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = Math.random()*16|0, v = c === 'x' ? r : (r&0x3|0x8);
-        return v.toString(16);
-    });
-}
 
 function getNoteByID(id) {
     if (id > '0') {
@@ -103,7 +97,7 @@ function getNoteByID(id) {
 
 function changeNoteItem(id,name,value) {
     for (i = 0; i < notes.length; i++) {
-        if (notes[i].id == id) {
+        if (notes[i]._id == id) {
             notes[i][name] = value;
         }
     }
@@ -121,8 +115,23 @@ function compareNotesPriority(s1, s2) {
     return s1.priority < s2.priority;
 }
 
-function saveNotes() {
-    localStorage.setItem("notes", JSON.stringify(notes));
+function saveNote(note_id) {
+    //localStorage.setItem("notes", JSON.stringify(notes));
+    var note = getNoteByID(note_id)
+
+    $.ajax({
+        dataType:  "json",
+        method: "PUT",
+        contentType: 'application/json',
+        url: "/note/",
+        data: JSON.stringify({"note": note})
+    }).done(function( msg ) {
+        output.text(JSON.stringify(msg));
+    }).fail(function( msg ) {
+        output.text(JSON.stringify(msg));
+    });
+
+
     $("#note-editor").hide();
     $("main").show();
     $("#header-sorting").show();
@@ -138,7 +147,7 @@ function quitEditor() {
 
 function deleteNote(id) {
     for (i = 0; i < notes.length; i++) {
-        if (notes[i].id == id) {
+        if (notes[i]._id == id) {
             notes.splice(i,1);
         }
     }

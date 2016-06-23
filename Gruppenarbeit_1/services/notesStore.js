@@ -45,7 +45,7 @@ notes_for_db.forEach(function(note) {
 
 function Note(id, finished, title, content, priority, dateDue, dateEnd, dateCreated)
 {
-    this.id = id;
+    this._id = id;
     this.finished = finished;
     this.title = title;
     this.content = content;
@@ -55,7 +55,7 @@ function Note(id, finished, title, content, priority, dateDue, dateEnd, dateCrea
     this.dateCreated = dateCreated;
 }
 
-
+/*
 function publicAddNote(id, finished, title, content, priority, dateDue, dateEnd, dateCreated, callback)
 {
     var note = new Note(id, finished, title, content, priority, dateDue, dateEnd, dateCreated);
@@ -65,6 +65,35 @@ function publicAddNote(id, finished, title, content, priority, dateDue, dateEnd,
         }
     });
 }
+*/
+
+function createUID() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random()*16|0, v = c === 'x' ? r : (r&0x3|0x8);
+        return v.toString(16);
+    });
+}
+
+function publicUpdateNote(note, callback)
+{
+    var note = note;
+    db.remove({_id: note._id}, {}, function(err, numRemove){
+        note._id = createUID();
+        db.insert(note, function(err, newDoc){
+            if (callback) {
+                callback(err, newDoc);
+            }
+        });
+    });
+    /*
+    db.insert(note, function(err, newDoc){
+        if(callback){
+            callback(err, newDoc);
+        }
+    });
+    */
+}
+
 
 function publicRemove(id, callback) {
     db.update({_id: id }, {}, function (err, count) {
@@ -87,4 +116,4 @@ function publicAll(callback)
     });
 }
 
-module.exports = {add : publicAddNote, delete : publicRemove, get : publicGet, all : publicAll};
+module.exports = {update : publicUpdateNote, delete : publicRemove, get : publicGet, all : publicAll};

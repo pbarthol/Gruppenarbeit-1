@@ -8,7 +8,6 @@ app.engine('hbs', hbs.express4());
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
 
-app.use(require("cookie-parser")());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(require("method-override")(function(req, res){
@@ -22,6 +21,7 @@ app.use(require("method-override")(function(req, res){
 //app.use("/", require('./routes/indexRoutes.js'));
 app.use("/", require('./routes/notesRoutes.js'));
 app.use("/notes", require('./routes/notesRoutes.js'));
+app.use("/note", require('./routes/notesRoutes.js'));
 app.use("/notes/edit", require('./routes/notesRoutes.js'));
 /*
 app.get("/ajax", function(req, res){

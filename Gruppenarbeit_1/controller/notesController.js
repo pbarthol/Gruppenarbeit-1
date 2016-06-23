@@ -1,9 +1,25 @@
 var store = require("../services/notesStore.js");
 //var util = require("../util/security");
 
+/*
 module.exports.createNote = function(req, res)
 {
     var note = store.add(req.body.id, function(err, note) {
+        res.format({
+            'text/html': function(){
+                res.render("edit_note", note);
+            },
+            'application/json': function(){
+                res.send(note);
+            }
+        });
+    });
+};
+*/
+module.exports.updateNote = function(req, res)
+{
+    var note_json = req.body.note;
+    var note = store.update(note_json, function(err, note) {
         res.format({
             'text/html': function(){
                 res.render("edit_note", note);
