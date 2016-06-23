@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var hbs = require('express-hbs');
-var session = require("express-session");
+
 
 var app = express();
 app.engine('hbs', hbs.express4());
@@ -9,7 +9,6 @@ app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
 
 app.use(require("cookie-parser")());
-app.use(session({ secret: 'casduichasidbnuwezrfinasdcvjkadfhsuilfuzihfioda', resave: false, saveUninitialized: true}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(require("method-override")(function(req, res){

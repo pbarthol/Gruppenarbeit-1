@@ -114,12 +114,11 @@ header img, header svg {
     cursor: pointer;
 }
 
-svg#logo path, header img.svg path  {
-    fill: #fff;
-}
-svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
-    /* fill: #eeff66; */
-    fill: #c8f1c8;
+#logo-notes  {
+    background-image:url(../img/logo_notes_white.png);
+    background-size: 136px 44px;
+    background-repeat: no-repeat;
+    background-position: 8px 8px;
 }
 
 .content {
