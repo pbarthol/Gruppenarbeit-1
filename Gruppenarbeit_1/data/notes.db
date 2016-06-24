@@ -2,4 +2,6 @@
 {"_id":"2GcnHAREtESre3","finished":true,"title":"Lore Ipsum 3","content":"1Bla bla bla bla ","priority":1,"dateDue":"2016-06-05","dateEnd":"2016-05-27","dateCreated":"2016-05-20"}
 {"_id":"2GnHZEt3ESre3","finished":true,"title":"Lore Ipsum 6","content":"1Bla bla bla bla ","priority":1,"dateDue":"2016-06-05","dateEnd":"2016-05-27","dateCreated":"2016-05-20"}
 {"_id":"2cnHZAREt3ESre3","finished":true,"title":"Lore Ipsum 2","content":"1Bla bla bla bla ","priority":1,"dateDue":"2016-06-05","dateEnd":"2016-05-27","dateCreated":"2016-05-20"}
+{"_id":"3ee7a245-0cee-4727-bffe-a9c6180c4b0d","finished":false,"title":"","content":"","priority":0,"dateDue":"","dateEnd":"","dateCreated":""}
 {"_id":"7ba1dc85-a450-4f1e-8567-9898ca15bf50","finished":true,"title":"Lore Ipsum 456789","content":"1Bla bla bla bla ","priority":1,"dateDue":"2016-06-05","dateEnd":"2016-05-27","dateCreated":"2016-05-20"}
+{"_id":"d929a072-e949-47b9-88a8-ab83eeb370a1","finished":false,"title":"Test BAP","content":"Note BAP","priority":0,"dateDue":"29 June, 2016","dateEnd":"","dateCreated":""}

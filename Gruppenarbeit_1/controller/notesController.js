@@ -1,33 +1,17 @@
 var store = require("../services/notesStore.js");
-//var util = require("../util/security");
 
-/*
-module.exports.createNote = function(req, res)
+module.exports.addNote = function(req, res)
 {
-    var note = store.add(req.body.id, function(err, note) {
-        res.format({
-            'text/html': function(){
-                res.render("edit_note", note);
-            },
-            'application/json': function(){
-                res.send(note);
-            }
-        });
+    var note = store.add(req.body.note, function(err, note) {
+        res.send(note);
     });
 };
-*/
+
 module.exports.updateNote = function(req, res)
 {
     var note_json = req.body.note;
     var note = store.update(note_json, function(err, note) {
-        res.format({
-            'text/html': function(){
-                res.render("edit_note", note);
-            },
-            'application/json': function(){
-                res.send(note);
-            }
-        });
+        res.send(note);
     });
 };
 
@@ -47,16 +31,3 @@ module.exports.getAllNotes = function(req, res)
     });
 };
 
-module.exports.deleteNote = function (req, res)
-{
-    store.delete( req.params.id, function(err, note) {
-        res.format({
-            'text/html': function(){
-                res.render("shownote", note);
-            },
-            'application/json': function(){
-                res.json(note);
-            }
-        });
-    });
-};

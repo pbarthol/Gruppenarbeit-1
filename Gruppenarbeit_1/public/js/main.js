@@ -1,7 +1,7 @@
 var notes = [];
 
 function Note() {
-    this._id = createUID();
+    this._id = "____";
     this.finished = false;
     this.title = "";
     this.content = "";
@@ -79,6 +79,14 @@ function getNotesFiltered() {
     }
 }
 
+function addNewNote() {
+    // create new note
+    var note = new Note();
+    notes.push(note); //
+    //return note;
+    renderEditor(note._id)
+}
+
 
 function getNoteByID(id) {
     if (id > '0') {
@@ -87,11 +95,6 @@ function getNoteByID(id) {
                 return notes[i];
             }
         }
-    } else {
-        // create new note
-        var note = new Note();
-        notes.push(note);
-        return note;
     }
 }
 
@@ -117,21 +120,37 @@ function compareNotesPriority(s1, s2) {
 
 function saveNote(note_id) {
     //localStorage.setItem("notes", JSON.stringify(notes));
-    var note = getNoteByID(note_id)
+    var note = getNoteByID(note_id);
+    if (note_id === "____") {
+        $.ajax({
+            dataType:  "json",
+            method: "POST",
+            contentType: 'application/json',
+            url: "/note/",
+            data: JSON.stringify({"note": note})
+        }).done(function( msg ) {
+            note = jQuery.parseJSON(msg);
+            renderEditor(note._id);
 
-    $.ajax({
-        dataType:  "json",
-        method: "PUT",
-        contentType: 'application/json',
-        url: "/note/",
-        data: JSON.stringify({"note": note})
-    }).done(function( msg ) {
-        output.text(JSON.stringify(msg));
-    }).fail(function( msg ) {
-        output.text(JSON.stringify(msg));
-    });
+        }).fail(function( msg ) {
+            output.text(JSON.stringify(msg));
+        });
+    }
+    else {
+        var note = getNoteByID(note_id);
 
-
+        $.ajax({
+            dataType: "json",
+            method: "PUT",
+            contentType: 'application/json',
+            url: "/note/",
+            data: JSON.stringify({"note": note})
+        }).done(function (msg) {
+            output.text(JSON.stringify(msg));
+        }).fail(function (msg) {
+            output.text(JSON.stringify(msg));
+        });
+    }
     $("#note-editor").hide();
     $("main").show();
     $("#header-sorting").show();
@@ -182,8 +201,8 @@ function renderSortedNotes(sb) {
     }
 }
 
-function renderEditor(id) {
-    var note = (id > "") ? getNoteByID(id) : getNoteByID(0);
+function renderEditor(_id) {
+    var note = (_id > "") ? getNoteByID(_id) : getNoteByID(0);
     // get Note from server
     /*
     $.ajax({
@@ -196,7 +215,6 @@ function renderEditor(id) {
         notes = msg;
     });
     */
-    
     $("main").hide();
     $("#header-sorting").hide();
     $("#note-editor").show().html(createEditorHtml(note));
@@ -208,8 +226,7 @@ function renderEditor(id) {
 }
 
 $(function () {
-
-
+    // get all notes from server
     $.ajax({
         dataType:  "json",
         method: "GET",
@@ -217,7 +234,6 @@ $(function () {
         //data: { id : 1 }
     }).done(function( msg ) {
         notes = msg;
-
         renderSortedNotes();
     });
     /*.fail(function( msg ) {
@@ -235,7 +251,8 @@ $(function () {
     });
 
     $("#ic-create").on("click", function () {
-        renderEditor();
+        addNewNote();
+        //renderEditor();
     });
 
     $("#btn-finish-date").on("click", function () {

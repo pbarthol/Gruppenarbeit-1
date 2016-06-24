@@ -78,6 +78,7 @@ function publicUpdateNote(note, callback)
 {
     var note = note;
     db.remove({_id: note._id}, {}, function(err, numRemove){
+        // Get a new UID
         note._id = createUID();
         db.insert(note, function(err, newDoc){
             if (callback) {
@@ -85,15 +86,18 @@ function publicUpdateNote(note, callback)
             }
         });
     });
-    /*
+}
+
+function publicAddNote(note, callback)
+{
+    // Get a new UID
+    note._id = createUID();
     db.insert(note, function(err, newDoc){
         if(callback){
             callback(err, newDoc);
         }
     });
-    */
 }
-
 
 function publicRemove(id, callback) {
     db.update({_id: id }, {}, function (err, count) {
@@ -116,4 +120,4 @@ function publicAll(callback)
     });
 }
 
-module.exports = {update : publicUpdateNote, delete : publicRemove, get : publicGet, all : publicAll};
+module.exports = {add: publicAddNote, update : publicUpdateNote, delete : publicRemove, get : publicGet, all : publicAll};
