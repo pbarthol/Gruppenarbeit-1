@@ -43,7 +43,7 @@ Handlebars.registerHelper("priority_icons_edit", function (note_id) {
 
 Handlebars.registerHelper("button_edit", function (note_id) {
     var button_content = "<i class=\"fa fa-pencil fa-fw\"></i>";
-    var button = $("<button class=\"button\" id=\"btn_edit_" + note_id +  "\"></button>").html(button_content).attr("onclick", "renderEditor('" + note_id + "')");
+    var button = $("<button class=\"button\" id=\"btn_edit_" + note_id +  "\"></button>").html(button_content).attr("onclick", "editNote('" + note_id + "')");
     return $('<div></div>').append(button).html()     ;
 });
 
@@ -84,7 +84,12 @@ function addNewNote() {
     var note = new Note();
     notes.push(note); //
     //return note;
-    renderEditor(note._id)
+    renderEditor(note)
+}
+
+function editNote(note_id) {
+    var note = getNoteByID(note_id);
+    renderEditor(note);
 }
 
 
@@ -102,6 +107,8 @@ function changeNoteItem(id,name,value) {
     for (i = 0; i < notes.length; i++) {
         if (notes[i]._id == id) {
             notes[i][name] = value;
+            // Todo: wenn finish button aus Overview -> Note speichern!
+            //saveNote(notes[i]._id);
         }
     }
 }
@@ -130,7 +137,7 @@ function saveNote(note_id) {
             data: JSON.stringify({"note": note})
         }).done(function( msg ) {
             note = jQuery.parseJSON(msg);
-            renderEditor(note._id);
+            renderEditor(note);
 
         }).fail(function( msg ) {
             output.text(JSON.stringify(msg));
@@ -181,28 +188,36 @@ function renderSortedNotes(sb) {
     //var objNotes = JSON.parse(localStorage.getItem("notes"));
     //notes = objNotes;
     //var token = undefined;
-    console.log(notes);
-    if ( (notes) && (notes.length > 0) ) {
-        sortby = (sb) ? sb : sortby;
-        switch (sortby) {
-            case 'dateDue':
-                $("#notes").html(createNotesHtml(getNotesFiltered().sort(compareNotesDateDue)));
-                break;
-            case 'dateCreated':
-                $("#notes").html(createNotesHtml(getNotesFiltered().sort(compareNotesDateCreated)));
-                break;
-            case 'priority':
-                $("#notes").html(createNotesHtml(getNotesFiltered().sort(compareNotesPriority)));
-                break;
+    // get all Notes
+    $.ajax({
+        dataType:  "json",
+        method: "GET",
+        url: "/notes",
+        //data: { id : 1 }
+    }).done(function( msg ) {
+        notes = msg;
+        console.log(notes);
+        if ( (notes) && (notes.length > 0) ) {
+            sortby = (sb) ? sb : sortby;
+            switch (sortby) {
+                case 'dateDue':
+                    $("#notes").html(createNotesHtml(getNotesFiltered().sort(compareNotesDateDue)));
+                    break;
+                case 'dateCreated':
+                    $("#notes").html(createNotesHtml(getNotesFiltered().sort(compareNotesDateCreated)));
+                    break;
+                case 'priority':
+                    $("#notes").html(createNotesHtml(getNotesFiltered().sort(compareNotesPriority)));
+                    break;
+            }
+        } else {
+            notes = [];
+            $("#notes").html("<p>No notes found.</p>");
         }
-    } else {
-        notes = [];
-        $("#notes").html("<p>No notes found.</p>");
-    }
+    });
 }
 
-function renderEditor(_id) {
-    var note = (_id > "") ? getNoteByID(_id) : getNoteByID(0);
+function renderEditor(note) {
     // get Note from server
     /*
     $.ajax({
@@ -227,6 +242,7 @@ function renderEditor(_id) {
 
 $(function () {
     // get all notes from server
+    /*
     $.ajax({
         dataType:  "json",
         method: "GET",
