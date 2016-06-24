@@ -15,6 +15,14 @@ module.exports.updateNote = function(req, res)
     });
 };
 
+module.exports.deleteNote = function(req, res)
+{
+    var note_json = req.body.note;
+    var note = store.delete(note_json, function(err, note) {
+        res.send(note);
+    });
+};
+
 module.exports.getNote = function(req, res)
 {
     store.get(req.params.id, function(err, note) {

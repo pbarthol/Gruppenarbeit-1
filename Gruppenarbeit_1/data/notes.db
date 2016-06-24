@@ -1,6 +1,3 @@
 {"_id":"2GcnHAREtESre3","finished":true,"title":"Lore Ipsum 1","content":"1Bla bla bla bla ","priority":1,"dateDue":" 5 June, 2016","dateEnd":"7 June, 2016","dateCreated":"1 June, 2016"}
 {"_id":"2GnHZEt3ESre3","finished":true,"title":"Lore Ipsum 2","content":"2Bla bla bla bla ","priority":4,"dateDue":"6 June, 2016","dateEnd":"16 June, 2016","dateCreated":"20 May, 2016"}
 {"_id":"2cnHZAREt3ESre3","finished":true,"title":"Lore Ipsum32","content":"3Bla bla bla bla ","priority":3,"dateDue":"10 June, 2016","dateEnd":"9 JUne, 2016","dateCreated":"10 May, 2016"}
-{"_id":"dbe6825c-93d1-4668-83e7-5f6b017d6372","finished":false,"title":"Test BAP 2","content":"Note BAP 2","priority":0,"dateDue":"20 July, 2016","dateEnd":"","dateCreated":""}
-{"$$deleted":true,"_id":"dbe6825c-93d1-4668-83e7-5f6b017d6372"}
-{"_id":"1ff1d593-ba06-49e8-8d6a-d4154fe4e597","finished":false,"title":"Test BAP 2","content":"Note BAP 2","priority":0,"dateDue":"20 July, 2016","dateEnd":"","dateCreated":""}

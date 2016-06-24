@@ -99,9 +99,11 @@ function publicAddNote(note, callback)
     });
 }
 
-function publicRemove(id, callback) {
-    db.update({_id: id }, {}, function (err, count) {
-        publicGet(id, callback);
+function publicRemove(note, callback) {
+    db.remove({_id: note._id}, {}, function(err, numRemove){
+        if(callback){
+            callback(err, numRemove);
+        }
     });
 }
 

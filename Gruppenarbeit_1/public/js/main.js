@@ -1,7 +1,7 @@
 var notes = [];
 
 function Note() {
-    this._id = "____";
+    this._id = "newNote";
     this.finished = false;
     this.title = "";
     this.content = "";
@@ -128,7 +128,7 @@ function compareNotesPriority(s1, s2) {
 function saveNote(note_id) {
     //localStorage.setItem("notes", JSON.stringify(notes));
     var note = getNoteByID(note_id);
-    if (note_id === "____") {
+    if (note_id === "newNote") {
         $.ajax({
             dataType:  "json",
             method: "POST",
@@ -171,17 +171,30 @@ function quitEditor() {
     renderSortedNotes();
 }
 
-function deleteNote(id) {
+function deleteNote(note_id) {
+    /*
     for (i = 0; i < notes.length; i++) {
         if (notes[i]._id == id) {
             notes.splice(i,1);
         }
     }
     localStorage.setItem("notes", JSON.stringify(notes));
-    $("#note-editor").hide();
-    $("main").show();
-    $("#header-sorting").show();
-    renderSortedNotes();
+    */
+    var note = getNoteByID(note_id);
+    $.ajax({
+        dataType: "json",
+        method: "POST",
+        contentType: 'application/json',
+        url: "/note/delete",
+        data: JSON.stringify({"note": note})
+    }).done(function (msg) {
+        $("#note-editor").hide();
+        $("main").show();
+        $("#header-sorting").show();
+        renderSortedNotes();
+    }).fail(function (msg) {
+        renderSortedNotes();
+    });
 }
 
 function renderSortedNotes(sb) {
