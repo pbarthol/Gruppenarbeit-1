@@ -18,7 +18,13 @@ Handlebars.registerHelper("finished_label", function () {
 
 Handlebars.registerHelper("finished_button", function (note_id) {
     button = ( this.finished ) ? "<i class=\"fa fa-check fa-fw\"></i>" : "";
-    finished_btn = "<button class=\"button finished_button\" name=\"finished\" id=\"{{this._id}}_finished\" onclick=\"changeNoteItem('" + note_id + "','finished'," + !this.finished+ "); renderEditor('" + getNoteByID(note_id) + "') \">" + button + "</button>";
+    finished_btn = "<button class=\"button finished_button\" name=\"finished\" id=\"{{this._id}}_finished\" onclick=\"changeNoteItem('" + note_id + "','finished'," + !this.finished+ "); renderEditor('" + note_id + "') \">" + button + "</button>";
+    return new Handlebars.SafeString(finished_btn);
+});
+
+Handlebars.registerHelper("finished_button_overview", function (note_id) {
+    button = ( this.finished ) ? "<i class=\"fa fa-check fa-fw\"></i>" : "";
+    finished_btn = "<button class=\"button finished_button\" name=\"finished\" id=\"{{this._id}}_finished\" onclick=\"changeNoteItem('" + note_id + "','finished'," + !this.finished+ "); saveNote('" + note_id + "') \">" + button + "</button>";
     return new Handlebars.SafeString(finished_btn);
 });
 
@@ -49,7 +55,7 @@ Handlebars.registerHelper("button_edit", function (note_id) {
 
 Handlebars.registerHelper("button_finish", function (note_id) {
     var button_content = "<i class=\"fa fa-check fa-fw\"></i>";
-    var button = (!this.finished)? $("<button class=\"button\" id=\"btn_finish_" + note_id +  "\"></button>").html(button_content).attr("onclick", "changeNoteItem('" + note_id + "','finished'," + !this.finished+ "); saveNote(note_id)") : $("<button class=\"button\" id=\"btn_finish_" + note_id +  "\"></button>").html(button_content).addClass("invisible").attr("disabled","disabled");
+    var button = (!this.finished)? $("<button class=\"button\" id=\"btn_finish_" + note_id +  "\"></button>").html(button_content).attr("onclick", "changeNoteItem('" + note_id + "','finished'," + !this.finished+ ")") : $("<button class=\"button\" id=\"btn_finish_" + note_id +  "\"></button>").html(button_content).addClass("invisible").attr("disabled","disabled");
     return $('<div></div>').append(button).html();
 });
 
@@ -107,6 +113,11 @@ function changeNoteItem(id,name,value) {
         if (notes[i]._id == id) {
             notes[i][name] = value;
             // Todo: wenn finish button aus Overview -> Note speichern!
+            /*
+            if ( name === "finished" && value === true ){
+                saveNote(id);
+            }
+            */
             //saveNote(notes[i]._id);
         }
     }
