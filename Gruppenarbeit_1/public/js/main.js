@@ -117,6 +117,15 @@ function changeNoteItem(id,name,value) {
         if ( name === "finished" ){
             notes[i]["dateEnd"] = new Date().toISOString().substring(0,10); // only 10 chars -> e.g. "2016-06-02"
         }
+        /*
+        if ( name === "dateDue" ){
+            // dateDue from datepicker e.g "6 June, 2016", "16 May, 2016"
+            value = new Date(value)
+            var dateDue = value.getUTCFullYear() + '-' + (value.getUTCMonth() + 1) + '-' + value.getUTCDate();
+            //var dateDue = value.toISOString().substring(0,10); // only 10 chars -> e.g. "2016-06-02"
+            notes[i]["dateDue"] = dateDue;
+        }
+        */
     }
 }
 
@@ -189,22 +198,7 @@ function renderEditor(note) {
 }
 
 $(function () {
-    // get all notes from server
-    /*
-    $.ajax({
-        dataType:  "json",
-        method: "GET",
-        url: "/notes",
-        //data: { id : 1 }
-    }).done(function( msg ) {
-        notes = msg;
-        renderSortedNotes();
-    });
-    /*.fail(function( msg ) {
-     $("#notes").html("<p>JSON.stringify(msg)</p>");
-     //output.text(JSON.stringify(msg));
-     });
-     */
+    // get all notes from server and render this
     renderSortedNotes("dateCreated");
 
     $("#header-setting").hide();

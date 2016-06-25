@@ -1,3 +1,5 @@
-{"_id":"bdd79c3d-4aef-45bc-b44a-8a349b4a66d8","finished":false,"title":"Lore Ipsum 3","content":"3Bla bla bla bla ","priority":2,"dateDue":"10 June, 2016","dateEnd":"9 June, 2016","dateCreated":"2016-06-09"}
-{"_id":"d3bf475d-e72c-4685-9671-9078e12ffced","finished":true,"title":"Lore Ipsum 1","content":"1Bla bla bla bla ","priority":1,"dateDue":" 5 June, 2016","dateEnd":"2016-06-04T00:00:00.000Z","dateCreated":"2016-05-30"}
+{"_id":"5a639004-f6cc-4c6d-97a7-f8331e41bafb","finished":false,"title":"Lore Ipsum 3","content":"3Bla bla bla bla ","priority":2,"dateDue":"10 June, 2016","dateEnd":"9 June, 2016","dateCreated":"2016-06-09"}
 {"_id":"de506322-37da-4899-ae25-d18b21216f6f","finished":false,"title":"Lore Ipsum 2","content":"2Bla bla bla bla ","priority":5,"dateDue":"6 June, 2016","dateEnd":"16 June, 2016","dateCreated":"2016-06-04"}
+{"_id":"f92f5f39-ada6-4cc0-9dea-2e71f7e4c5e2","finished":true,"title":"Lore Ipsum 1","content":"1Bla bla bla bla ","priority":1,"dateDue":" 5 June, 2016","dateEnd":"2016-06-25","dateCreated":"2016-05-30"}
+{"_id":"fe444d06-8912-4fdf-a08b-e47a5cba5ccb","finished":false,"title":"asfafaf","content":"uiltuilzul","priority":0,"dateDue":"","dateEnd":"","dateCreated":"2016-06-25"}
+{"$$deleted":true,"_id":"fe444d06-8912-4fdf-a08b-e47a5cba5ccb"}

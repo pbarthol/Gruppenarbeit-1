@@ -44,7 +44,6 @@ function ajaxSaveNote(note) {
             $("main").show();
             $("#header-sorting").show();
             renderSortedNotes();
-
         }).fail(function (msg) {
             output.text(JSON.stringify(msg));
         });
@@ -65,12 +64,6 @@ function ajaxSaveNote(note) {
             output.text(JSON.stringify(msg));
         });
     }
-    /*
-     $("#note-editor").hide();
-     $("main").show();
-     $("#header-sorting").show();
-     renderSortedNotes();
-     */
 }
 
 function ajaxDeleteNote(note){
@@ -80,15 +73,14 @@ function ajaxDeleteNote(note){
         contentType: 'application/json',
         url: "/note/delete",
         data: JSON.stringify({"note": note})
-    }).success(function (msg) {
-        $("#note-editor").hide();
-        $("main").show();
-        $("#header-sorting").show();
-        renderSortedNotes();
+    }).done(function (msg) {
     }).fail(function (msg) {
-        renderSortedNotes();
     });
-    
+    $("#note-editor").hide();
+    $("main").show();
+    $("#header-sorting").show();
+    renderSortedNotes();
+
 }
 
 
