@@ -1,3 +1,5 @@
 {"_id":"2GcnHAREtESre3","finished":true,"title":"Lore Ipsum 1","content":"1Bla bla bla bla ","priority":1,"dateDue":" 5 June, 2016","dateEnd":"7 June, 2016","dateCreated":"1 June, 2016"}
-{"_id":"2GnHZEt3ESre3","finished":true,"title":"Lore Ipsum 2","content":"2Bla bla bla bla ","priority":4,"dateDue":"6 June, 2016","dateEnd":"16 June, 2016","dateCreated":"20 May, 2016"}
-{"_id":"2cnHZAREt3ESre3","finished":true,"title":"Lore Ipsum32","content":"3Bla bla bla bla ","priority":3,"dateDue":"10 June, 2016","dateEnd":"9 JUne, 2016","dateCreated":"10 May, 2016"}
+{"_id":"7e39b3e1-143b-49c4-a61f-7493800a58dd","finished":true,"title":"Lore Ipsum 2","content":"2Bla bla bla bla ","priority":5,"dateDue":"6 June, 2016","dateEnd":"16 June, 2016","dateCreated":"20 May, 2016"}
+{"_id":"8476e068-7d34-4bea-87f4-d2a17d419c33","finished":true,"title":"Lore Ipsum3","content":"3Bla bla bla bla ","priority":2,"dateDue":"10 June, 2016","dateEnd":"9 JUne, 2016","dateCreated":"10 May, 2016"}
+{"_id":"367c4551-13c8-405d-a230-0219a831228d","finished":false,"title":"ahgfapi","content":"eqajporgeaogo","priority":0,"dateDue":"","dateEnd":"","dateCreated":""}
+{"$$deleted":true,"_id":"367c4551-13c8-405d-a230-0219a831228d"}

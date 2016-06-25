@@ -18,7 +18,7 @@ Handlebars.registerHelper("finished_label", function () {
 
 Handlebars.registerHelper("finished_button", function (note_id) {
     button = ( this.finished ) ? "<i class=\"fa fa-check fa-fw\"></i>" : "";
-    finished_btn = "<button class=\"button finished_button\" name=\"finished\" id=\"{{this._id}}_finished\" onclick=\"changeNoteItem('" + note_id + "','finished'," + !this.finished+ "); renderEditor('" + note_id + "') \">" + button + "</button>";
+    finished_btn = "<button class=\"button finished_button\" name=\"finished\" id=\"{{this._id}}_finished\" onclick=\"changeNoteItem('" + note_id + "','finished'," + !this.finished+ "); renderEditor('" + getNoteByID(note_id) + "') \">" + button + "</button>";
     return new Handlebars.SafeString(finished_btn);
 });
 
@@ -82,7 +82,7 @@ function getNotesFiltered() {
 function addNewNote() {
     // create new note
     var note = new Note();
-    notes.push(note); //
+    notes.push(note);
     //return note;
     renderEditor(note)
 }
@@ -91,7 +91,6 @@ function editNote(note_id) {
     var note = getNoteByID(note_id);
     renderEditor(note);
 }
-
 
 function getNoteByID(id) {
     if (id > '0') {
@@ -114,11 +113,11 @@ function changeNoteItem(id,name,value) {
 }
 
 function compareNotesDateDue(s1, s2) {
-    return s1.dateDue < s2.dateDue;
+    return Date.parse(s1.dateDue) < Date.parse(s2.dateDue);
 }
 
 function compareNotesDateCreated(s1, s2) {
-    return s1.dateCreated < s2.dateCreated;
+    return Date.parse(s1.dateCreated) < Date.parse(s2.dateCreated);
 }
 
 function compareNotesPriority(s1, s2) {
@@ -128,6 +127,8 @@ function compareNotesPriority(s1, s2) {
 function saveNote(note_id) {
     //localStorage.setItem("notes", JSON.stringify(notes));
     var note = getNoteByID(note_id);
+    ajaxSaveNote(note);
+    /*
     if (note_id === "newNote") {
         $.ajax({
             dataType:  "json",
@@ -162,6 +163,7 @@ function saveNote(note_id) {
     $("main").show();
     $("#header-sorting").show();
     renderSortedNotes();
+    */
 }
 
 function quitEditor() {
@@ -172,15 +174,10 @@ function quitEditor() {
 }
 
 function deleteNote(note_id) {
-    /*
-    for (i = 0; i < notes.length; i++) {
-        if (notes[i]._id == id) {
-            notes.splice(i,1);
-        }
-    }
-    localStorage.setItem("notes", JSON.stringify(notes));
-    */
+    //localStorage.setItem("notes", JSON.stringify(notes));
     var note = getNoteByID(note_id);
+    ajaxDeleteNote(note);
+    /*
     $.ajax({
         dataType: "json",
         method: "POST",
@@ -195,13 +192,13 @@ function deleteNote(note_id) {
     }).fail(function (msg) {
         renderSortedNotes();
     });
+    */
 }
 
 function renderSortedNotes(sb) {
-    //var objNotes = JSON.parse(localStorage.getItem("notes"));
-    //notes = objNotes;
-    //var token = undefined;
     // get all Notes
+    ajaxGetAllNotes(sb);
+    /*
     $.ajax({
         dataType:  "json",
         method: "GET",
@@ -228,6 +225,7 @@ function renderSortedNotes(sb) {
             $("#notes").html("<p>No notes found.</p>");
         }
     });
+    */
 }
 
 function renderEditor(note) {
@@ -243,6 +241,9 @@ function renderEditor(note) {
         notes = msg;
     });
     */
+    if(typeof note === 'string') {
+        note = getNoteByID(note);
+    }
     $("main").hide();
     $("#header-sorting").hide();
     $("#note-editor").show().html(createEditorHtml(note));

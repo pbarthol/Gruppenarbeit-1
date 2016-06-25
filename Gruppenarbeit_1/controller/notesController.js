@@ -19,7 +19,7 @@ module.exports.deleteNote = function(req, res)
 {
     var note_json = req.body.note;
     var note = store.delete(note_json, function(err, note) {
-        res.send(note);
+        res.send("");
     });
 };
 
