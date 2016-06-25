@@ -1,6 +1,4 @@
 {"_id":"2GcnHAREtESre3","finished":true,"title":"Lore Ipsum 1","content":"1Bla bla bla bla ","priority":1,"dateDue":" 5 June, 2016","dateEnd":"7 June, 2016","dateCreated":"1 June, 2016"}
 {"_id":"62a12b17-d5af-4020-82b9-050652802c1c","finished":false,"title":"Test BAP","content":"Note BAP","priority":3,"dateDue":"27 July, 2016","dateEnd":"","dateCreated":""}
-{"_id":"de506322-37da-4899-ae25-d18b21216f6f","finished":false,"title":"Lore Ipsum 2","content":"2Bla bla bla bla ","priority":5,"dateDue":"6 June, 2016","dateEnd":"16 June, 2016","dateCreated":"20 May, 2016"}
-{"_id":"ff0d321f-1280-4be6-8918-153525f13b2f","finished":false,"title":"Lore Ipsum3","content":"3Bla bla bla bla ","priority":2,"dateDue":"10 June, 2016","dateEnd":"9 JUne, 2016","dateCreated":"10 May, 2016"}
-{"$$deleted":true,"_id":"ff0d321f-1280-4be6-8918-153525f13b2f"}
 {"_id":"bdd79c3d-4aef-45bc-b44a-8a349b4a66d8","finished":false,"title":"Lore Ipsum 3","content":"3Bla bla bla bla ","priority":2,"dateDue":"10 June, 2016","dateEnd":"9 JUne, 2016","dateCreated":"10 May, 2016"}
+{"_id":"de506322-37da-4899-ae25-d18b21216f6f","finished":false,"title":"Lore Ipsum 2","content":"2Bla bla bla bla ","priority":5,"dateDue":"6 June, 2016","dateEnd":"16 June, 2016","dateCreated":"20 May, 2016"}
