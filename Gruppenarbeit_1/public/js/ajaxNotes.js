@@ -1,4 +1,9 @@
 function ajaxGetAllNotes(sb) {
+
+    var monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+    
     $.ajax({
         dataType: "json",
         method: "GET",
@@ -6,6 +11,19 @@ function ajaxGetAllNotes(sb) {
         //data: { id : 1 }
     }).done(function (msg) {
         notes = msg;
+        // change dateDue in each note
+        for (i = 0; i < notes.length; i++) {
+            /*
+            var note = notes[i];
+            var dateAsString = note.dateDue;
+            var month = note.dateDue.substring(5,7);
+            month = parseInt(month);
+            var day = note.dateDue.substring(8,10);
+            var year = note.dateDue.substring(0,4);
+            notes[i].dateDue = day + " " + monthNames[month-1] + ", " + year;
+            */
+            notes[i].dateDue = notes[i].dateDue.substring(8,10) + " " + monthNames[parseInt(notes[i].dateDue.substring(5,7))-1] + ", " + notes[i].dateDue.substring(0,4);
+        }
         if ((notes) && (notes.length > 0)) {
             sortby = (sb) ? sb : sortby;
             switch (sortby) {

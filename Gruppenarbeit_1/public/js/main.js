@@ -117,15 +117,23 @@ function changeNoteItem(id,name,value) {
         if ( name === "finished" ){
             notes[i]["dateEnd"] = new Date().toISOString().substring(0,10); // only 10 chars -> e.g. "2016-06-02"
         }
-        /*
-        if ( name === "dateDue" ){
+        if ( name === "dateDue" ) {
             // dateDue from datepicker e.g "6 June, 2016", "16 May, 2016"
             value = new Date(value)
-            var dateDue = value.getUTCFullYear() + '-' + (value.getUTCMonth() + 1) + '-' + value.getUTCDate();
+            var utcMonth =value.getUTCMonth() + 1;
+            utcMonth = utcMonth.toString();
+            if (utcMonth.length === 1) {
+                utcMonth = "0" + utcMonth;
+            }
+            var utcDay =  value.getUTCDate() + 1;
+            utcDay = utcDay.toString();
+            if (utcDay.length === 1) {
+                utcDay = "0" + utcDay;
+            }
+            var dateDue = value.getUTCFullYear().toString() + '-' + utcMonth + '-' + utcDay;
             //var dateDue = value.toISOString().substring(0,10); // only 10 chars -> e.g. "2016-06-02"
             notes[i]["dateDue"] = dateDue;
         }
-        */
     }
 }
 
@@ -159,22 +167,6 @@ function deleteNote(note_id) {
     //localStorage.setItem("notes", JSON.stringify(notes));
     var note = getNoteByID(note_id);
     ajaxDeleteNote(note);
-    /*
-    $.ajax({
-        dataType: "json",
-        method: "POST",
-        contentType: 'application/json',
-        url: "/note/delete",
-        data: JSON.stringify({"note": note})
-    }).done(function (msg) {
-        $("#note-editor").hide();
-        $("main").show();
-        $("#header-sorting").show();
-        renderSortedNotes();
-    }).fail(function (msg) {
-        renderSortedNotes();
-    });
-    */
 }
 
 function renderSortedNotes(sb) {
