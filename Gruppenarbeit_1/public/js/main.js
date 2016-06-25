@@ -8,7 +8,8 @@ function Note() {
     this.priority = 0;
     this.dateDue = "";
     this.dateEnd = "";
-    this.dateCreated = "";
+    //this.dateCreated = JSON.stringify(new Date().toISOString().substring(0,10));
+    this.dateCreated = new Date().toISOString().substring(0,10);
 }
 
 Handlebars.registerHelper("finished_label", function () {
@@ -112,13 +113,9 @@ function changeNoteItem(id,name,value) {
     for (i = 0; i < notes.length; i++) {
         if (notes[i]._id == id) {
             notes[i][name] = value;
-            // Todo: wenn finish button aus Overview -> Note speichern!
-            /*
-            if ( name === "finished" && value === true ){
-                saveNote(id);
-            }
-            */
-            //saveNote(notes[i]._id);
+        }
+        if ( name === "finished" ){
+            notes[i]["dateEnd"] = new Date().toISOString().substring(0,10); // only 10 chars -> e.g. "2016-06-02"
         }
     }
 }
@@ -128,7 +125,8 @@ function compareNotesDateDue(s1, s2) {
 }
 
 function compareNotesDateCreated(s1, s2) {
-    return Date.parse(s1.dateCreated) < Date.parse(s2.dateCreated);
+    //return Date.parse(s1.dateCreated) < Date.parse(s2.dateCreated);
+    return s1.dateCreated < s2.dateCreated;
 }
 
 function compareNotesPriority(s1, s2) {
@@ -139,42 +137,6 @@ function saveNote(note_id) {
     //localStorage.setItem("notes", JSON.stringify(notes));
     var note = getNoteByID(note_id);
     ajaxSaveNote(note);
-    /*
-    if (note_id === "newNote") {
-        $.ajax({
-            dataType:  "json",
-            method: "POST",
-            contentType: 'application/json',
-            url: "/note/",
-            data: JSON.stringify({"note": note})
-        }).done(function( msg ) {
-            note = jQuery.parseJSON(msg);
-            renderEditor(note);
-
-        }).fail(function( msg ) {
-            output.text(JSON.stringify(msg));
-        });
-    }
-    else {
-        var note = getNoteByID(note_id);
-
-        $.ajax({
-            dataType: "json",
-            method: "PUT",
-            contentType: 'application/json',
-            url: "/note/",
-            data: JSON.stringify({"note": note})
-        }).done(function (msg) {
-            output.text(JSON.stringify(msg));
-        }).fail(function (msg) {
-            output.text(JSON.stringify(msg));
-        });
-    }
-    $("#note-editor").hide();
-    $("main").show();
-    $("#header-sorting").show();
-    renderSortedNotes();
-    */
 }
 
 function quitEditor() {
@@ -209,49 +171,10 @@ function deleteNote(note_id) {
 function renderSortedNotes(sb) {
     // get all Notes
     ajaxGetAllNotes(sb);
-    /*
-    $.ajax({
-        dataType:  "json",
-        method: "GET",
-        url: "/notes",
-        //data: { id : 1 }
-    }).done(function( msg ) {
-        notes = msg;
-        console.log(notes);
-        if ( (notes) && (notes.length > 0) ) {
-            sortby = (sb) ? sb : sortby;
-            switch (sortby) {
-                case 'dateDue':
-                    $("#notes").html(createNotesHtml(getNotesFiltered().sort(compareNotesDateDue)));
-                    break;
-                case 'dateCreated':
-                    $("#notes").html(createNotesHtml(getNotesFiltered().sort(compareNotesDateCreated)));
-                    break;
-                case 'priority':
-                    $("#notes").html(createNotesHtml(getNotesFiltered().sort(compareNotesPriority)));
-                    break;
-            }
-        } else {
-            notes = [];
-            $("#notes").html("<p>No notes found.</p>");
-        }
-    });
-    */
 }
 
 function renderEditor(note) {
     // get Note from server
-    /*
-    $.ajax({
-        dataType:  "json",
-        method: "GET",
-        url: "/notes/edit/" + id,
-        //data: { id : id }
-        // The generated request url looks like: Request URL:http://127.0.0.1:3001/notes/edit/2IPojvnomnWyLdOc
-    }).done(function( msg ) {
-        notes = msg;
-    });
-    */
     if(typeof note === 'string') {
         note = getNoteByID(note);
     }
@@ -282,10 +205,14 @@ $(function () {
      //output.text(JSON.stringify(msg));
      });
      */
-    renderSortedNotes();
+    renderSortedNotes("dateCreated");
 
     $("#header-setting").hide();
     $("#note-editor").hide();
+    $(".note-content .fa-chevron-up").hide();
+    $(".note-content-body").hide();
+    $("#btn-create-date").addClass("active");
+    $("#btn-all-tasks").addClass("active");
 
     $("#ic-setting").on("click", function () {
         $("#header-setting").slideToggle(500);
