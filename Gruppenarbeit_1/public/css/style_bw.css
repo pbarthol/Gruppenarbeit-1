@@ -1,9 +1,41 @@
-/* Grundlayout */
+/* DatePicker CSS */
+@import "datepicker/datepicker.css" screen;
+@import "datepicker/datepicker.date.css" screen;
 
+/* style dependent colors / logo  */
+
+/* text colors */
+.note h1, .note-info .fa-bolt.prio-active {
+    color: #333333;
+}
+
+/* background colors */
+.header, .picker__day--highlighted, .filters .button.active, .picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected  {
+    background-color: #aaaaaa;
+}
+.picker__day--infocus:hover, .picker__day--outfocus:hover, option {
+    background-color: #efefef;
+}
+
+/* bordercolors */
+.note-body:hover, .picker__day--highlighted {
+    border-color: #333333;
+}
+
+/* logo */
+#logo-notes {
+    background-image:url(../img/logo_notes_bw.png);
+    background-size: 136px 44px;
+    background-repeat: no-repeat;
+    background-position: 8px 8px;
+}
+
+
+/* Grundlayout */
 body {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 1em;
-    color: #555555;
+    color: #777;
 }
 
 p, h1, h2, h3 {
@@ -18,8 +50,8 @@ footer {
 }
 
 .header {
-    background-color: #dedede;
     height: 60px;
+    margin-bottom: 0.5em;
 }
 .header h1 {
     font-family: 'Ubuntu', sans-serif;
@@ -32,10 +64,9 @@ footer {
 
 .note h1 {
     font-size: 1.2em;
-    color: #333;
     display: block;
     margin: 0;
-    padding: 1em 0 0 0;
+    padding: 0.2em 0 0 0;
 }
 
 .filters {
@@ -45,8 +76,8 @@ footer {
 }
 .filters-content {
     box-sizing: border-box;
-    padding: 0;
-    width: 60%;
+    padding: 0 0 0 0.6em;
+    width: 100%;
     float: left;
 }
 .filters-content p {
@@ -56,13 +87,12 @@ footer {
 }
 .filters-aside {
     box-sizing: border-box;
-    width: 40%;
-    min-width: 200px;
+    width: 100%;
+    min-width: 0px;
     float: right;
 }
 
 header .row:nth-child(2) {
-    margin-top: 0.5em;
     padding: 0.5em 0 1em 0;
 }
 header .row:nth-child(3) {
@@ -74,17 +104,26 @@ header img, header svg {
     margin: 8px;
 }
 
-.header .logo  {
+.header .logo {
     float: left;
     width: 60%;
 }
 
-.header .icons  {
+.header .icons {
     float: right;
     width: 38%;
+    min-width: 0px;
 }
 
-.header .icons .ic-label  {
+.header .icons .fa-pencil-square-o, .header .icons .fa-sort-alpha-asc, .header .icons .fa-cog {
+    color: #fff;
+    font-size: 2.2em;
+    padding: 0.4em 0 0 0.2em;
+    float: right;
+    cursor: pointer;
+}
+
+#ic-label {
     color: #fff;
     font-size: 1.4em;
     padding: 0.8em 0.8em 0 0;
@@ -92,30 +131,19 @@ header img, header svg {
     display: none;
 }
 
-.header .icons .fa-pencil-square-o, .header .icons .fa-sort-alpha-asc, .header .icons .fa-cog {
-    color: #fff;
-    font-size: 2.4em;
-    padding: 0.2em 0 0 0.5em;
-    float: right;
-    cursor: pointer;
-}
-
-svg#logo path, header img.svg path  {
-    fill: #fff;
-}
-svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
-    /* fill: #eeff66; */
-    fill: #333;
+#label-style {
+    display: none;
 }
 
 .content {
     background-color: #fff;
 }
+
 .date, .editor-label {
     background-color: #fff;
     box-sizing: border-box;
     padding: 1em;
-    width: 20%;
+    width: 40%;
 }
 .date p:first-child {
     font-weight: 600;
@@ -123,7 +151,7 @@ svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
 .date .finished-date {
     margin-left:1em;
 }
-.date .urgent {
+.date .urgent, .delete {
     color: orangered;
 }
 .note, .editor-field {
@@ -133,56 +161,88 @@ svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
     margin: 0.2em 0;
     width: 80%;
 }
-.note-body, .edit-body {
-    margin: 0.4em 0;
-    border: 2px solid #efefef;
- }
-.note-body:hover {
-    border: 2px solid #333;
+
+.editor-field {
+    width: 98%;
 }
+
+.note-body {
+    margin: 0.4em  0;
+    border: 2px solid #efefef;
+}
+
 .note-body:first-child {
     margin-top: 0.4em;
 }
 .note-body:last-child {
     margin-bottom: 0.4em;
 }
+
+.edit-body {
+    margin: 0;
+    border: 1px solid #efefef;
+    border-bottom: none;
+}
+.edit-body:last-child {
+    margin: 0;
+    border: 1px solid #efefef;
+}
+
 .note-content {
     background-color: #fff;
     box-sizing: border-box;
-    padding: 0;
+    padding: 0 1em 0 0;
+    width: 260px;
     float: left;
 }
-.note-content .fa-chevron-down {
+.note-content .fa-chevron-down, .note-content .fa-chevron-up {
     color: #dedede;
     font-size: 2em;
     padding: 0.2em 0 0 0;
     min-width: 400px;
     text-align: left;
+    cursor: pointer;
 }
+
+.note-content-body {
+    white-space: pre;
+}
+
+.note-edit {
+    width: 100%;
+    float: left;
+}
+
 .note-info {
-     background-color: #fff;
-     box-sizing: border-box;
-     padding: 0;
-     margin: 0 1.5em 0 0;
-     /* width: 10%; */
-     min-width: 200px;
-     float: right;
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0.5em 1.5em 1.5em 0;
+    min-width: 200px;
+    font-size: 0.8em;
+    float: left;
 }
+
 .note-info .fa-bolt {
-    color: #333;
-    font-size: 2.5em;
+    color: #efefef;
+    font-size: 2em;
+}
+
+.note-info a {
+    text-decoration: none;
 }
 
 .edit {
     background-color: #fff;
     box-sizing: border-box;
     min-width: 80px;
-    float: right;
+    margin-bottom: 0.5em;
+    float: left;
 }
 
 .button {
     border: none;
-    color: #555;
+    color: #777;
     text-align: left;
     text-decoration: none;
     display: inline-block;
@@ -191,15 +251,19 @@ svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
     cursor: pointer;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
 }
+
 .edit .button {
      background: #fff;
      border-radius: 5px;
-     font-size: 1.5em;
-     width: 54px;
+     font-size: 1.2em;
+     width: 45px;
+     margin-left: 0;
+     margin-right: 1em;
  }
 .edit .button .fa {
     padding: 0 0.5em 0 0;
 }
+
 .filters .button {
     background: #fff;
     border-radius: 3px;
@@ -209,20 +273,18 @@ svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
 .filters-aside .button {
     float: right;
     margin-right: 1.25em;
-    width: 100px !important;
-}.filters-aside  {
-     min-width: 250px;
- }
+    width: 90% !important;
+}
 .filters-content .button {
-    min-width: 200px;
+    min-width: 90%;
 }
 .filters .button .fa {
     padding: 0 0.2em 0 0;
     font-size: 1.2em;
  }
 .filters .button.active {
-    background: #333;
     color: #fff;
+    outline: 0;
 }
 .create .button {
     background: #fff;
@@ -238,8 +300,29 @@ svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
     margin: 0.5em;
     height: 45px;
     font-size: 1em;
-    width: 200px;
+    width: 100%;
     text-align: center;
+}
+
+.editor-field .button.reset{
+    width: 90px;
+
+}
+
+.editor-field .button.finished_button{
+     border-radius: 5px;
+     font-size: 1.4em;
+     width: 35px;
+     height: 35px;
+     border: 1px solid #ccc;
+     box-shadow: none;
+     padding: 0;
+     margin: 0;
+ }
+
+.editor-field p {
+    margin: 1em 0 1em 0.2em;
+    font-size: 1.2em;
 }
 
 .footer {
@@ -247,13 +330,18 @@ svg#logo path:nth-child(1), header img.svg path:nth-child(1)  {
     padding: 1em;
 }
 .row {
-    display: -webkit-box;  /* OLD: Chrome <=20, iOS <=6,
-                            Safari <=6 */
+    display: -webkit-box;  /* OLD: Chrome <=20, iOS <=6, Safari <=6 */
     display: -moz-box;     /* OLD: Firefox <=21 */
     display: -ms-flexbox;  /* TWEENER: IE 10 */
     display: -webkit-flex; /* NEW: Chrome 21-28 */
     display: flex;         /* NEW (Spec): Chrome >=29,
                             Firefox >=22, IE >=11 */
+}
+
+.invisible {
+    opacity: 0.25;
+    filter: alpha(opacity=25); /* For IE8 and earlier */
+    cursor: default;
 }
 
 input[type="text"], textarea, select {
@@ -267,6 +355,9 @@ input[type="text"], textarea, select {
     font-size: 1em;
     min-width: 226px;
 }
+textarea {
+    font-size: 1.2em;
+}
 
 input[type="checkbox"] {
     margin: 0 0.7em 0 0.1em;
@@ -278,9 +369,89 @@ input[type="checkbox"] {
 }
 
 .editor-label h2 {
-    font-size: 1.2em;
-    font-wight: normal;
+    font-size: 1em;
+    font-weight: normal;
 }
 
-option { background: rgba(239, 239, 239, 0.27); font-style: italic; }
-/* select { background: #333; font-style: italic; } */
+option {
+    font-style: italic;
+}
+
+#note-save .editor-label, #note-delete .editor-label {
+    display: none;
+}
+
+.picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected {
+    color: #ffffff;
+}
+
+/* media queries */
+
+@media only screen and (min-width: 480px) {
+    #ic-label  {
+        display: block;
+    }
+    .header .icons {
+        min-width: 250px;
+    }
+    #label-style {
+         display: block;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .header .icons .fa-pencil-square-o, .header .icons .fa-sort-alpha-asc, .header .icons .fa-cog {
+        font-size: 2.4em;
+        padding: 0.3em 0 0 0.2em;
+    }
+    .editor-field {
+        width: 80%;
+    }
+    .editor-field .button {
+        width: 200px;
+    }
+    #note-save .editor-label, #note-delete .editor-label {
+        display: block;
+    }
+    .note-content {
+        width: 40%;
+    }
+    .note-edit {
+        width: 60%;
+    }
+    .edit .button {
+        margin-left: 1em;
+        margin-right: 0;
+    }
+    .date, .editor-label {
+        width: 20%;
+    }
+}
+
+@media only screen and (min-width: 1280px) {
+    .note-content {
+        width: 60%;
+    }
+    .note-edit {
+        width: 40%;
+        float: right;
+        max-width: 400px;
+    }
+    .filters-aside   {
+        min-width: 250px;
+        width: 40%;
+    }
+    .filters-content {
+        width: 60%;
+    }
+    .filters-content .button {
+        min-width: 180px;
+    }
+    .filters-aside .button {
+        width: 100px !important;
+    }
+}
+
+
+
+

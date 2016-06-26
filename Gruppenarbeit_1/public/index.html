@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> <!-- Peters Push -->
+<head>
     <meta charset="UTF-8">
-    <meta name="author" content="Mike Hueppi" />
+    <meta name="author" content="Mike Hueppi / Peter Bartholet" />
     <title>Notes</title>
 
-    <!--// StyleSheet -->
-    <link id="pagestyle" href="../css/style.css" rel="stylesheet">
+    <link id="pagestyle" href="css/style.css" rel="stylesheet">
 
-    <!--// handlebars.js  -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
-
-    <!--// Font Icons -->
-    <script src="https://use.fonticons.com/03451a09.js"></script>
 </head>
 <body>
 
@@ -20,18 +14,19 @@
     <div class="row header">
         <div class="logo" id="logo-notes"></div>
         <div class="icons">
-            <div class="ic-label">Style</div><i class="fa fa-cog fa-fw" id="ic-setting"></i>
-            <div class="ic-label">Create New Note</div><i class="fa fa-pencil-square-o fa-fw" id="ic-create"></i>
+            <i class="fa fa-cog fa-fw" id="ic-setting"></i>
+            <i class="fa fa-pencil-square-o fa-fw" id="ic-create"></i>
+            <div id="ic-label"></div>
         </div>
     </div>
     <div class="row filters" id="header-setting">
-        <div class="filters-content">
-            <p>Choose the style...</p>
+        <div class="filters-content" id="label-style">
+            <p>Choose your favorite style...</p>
         </div>
         <div class="filters-aside">
             <form>
                 <select id="style-switcher" title="note-style-switcher">
-                    <option value="../css/style.css" selected>Style: Lemmon</option>
+                    <option value="css/style.css" selected>Style: Lemmon</option>
                     <option value="css/style_bw.css">Style: Black & White</option>
                     <option value="css/style_rp.css">Style: Red Pepper</option>
                 </select>
@@ -66,9 +61,11 @@
             <p>{{finished_label}}<span class="finished-date"></span></p>
         </div>
         <div class="note">
-            <div class="note-content"><h1>{{this.title}}</h1><p>{{this.content}}</p><p><i class="fa fa-chevron-down fa-fw"></i></p></div>
-            <div class="edit">{{{finished_button_overview this._id }}} {{{button_edit this._id }}} </div>
-            <div class="note-info">{{priority_icons}}</div>
+            <div class="note-content"><h1>{{this.title}}</h1><p class="note-content-body">{{this.content}}</p><p><i class="fa fa-chevron-down fa-fw"></i><i class="fa fa-chevron-up fa-fw"></i></p></div>
+            <div class="note-edit">
+                <div class="note-info">{{priority_icons}}</div>
+                <div class="edit">{{{button_finish this._id }}} {{{button_edit this._id }}} </div>
+            </div>
         </div>
     </div>
 
@@ -137,14 +134,12 @@
     </div>
 </script>
 
-<!-- <script src="node_modules/jquery/dist/jquery.js"></script> -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="js/libraries/handlebars.min.js"></script>
 <script src="js/libraries/fonticons.js"></script>
 <script src="js/libraries/jquery.min.js"></script>
 <script src="js/libraries/picker.js"></script>
 <script src="js/libraries/picker.date.js"></script>
-<script src="js/libraries/moment.js"></script>
+<!--<script src="js/libraries/moment.js"></script>-->
 <script src="js/libraries/legacy.js"></script>
 <script src="js/ajaxNotes.js"></script>
 <script src="js/main.js"></script>

@@ -8,7 +8,6 @@ function Note() {
     this.priority = 0;
     this.dateDue = "";
     this.dateEnd = "";
-    //this.dateCreated = JSON.stringify(new Date().toISOString().substring(0,10));
     this.dateCreated = new Date().toISOString().substring(0,10);
 }
 
@@ -200,13 +199,20 @@ $(function () {
     $("#btn-create-date").addClass("active");
     $("#btn-all-tasks").addClass("active");
 
-    $("#ic-setting").on("click", function () {
+    $("#ic-setting").click( function () {
         $("#header-setting").slideToggle(500);
+    }).hover(function(){
+        $("#ic-label").text("Style Setting");
+    }, function(){
+        $("#ic-label").text("");
     });
 
-    $("#ic-create").on("click", function () {
+    $("#ic-create").click( function () {
         addNewNote();
-        //renderEditor();
+    }).hover(function(){
+        $("#ic-label").text("New Note");
+    }, function(){
+        $("#ic-label").text("");
     });
 
     $("#btn-finish-date").on("click", function () {
@@ -253,6 +259,7 @@ $(function () {
 
     $("#style-switcher").on("change", function () {
         $("#pagestyle").attr("href", this.value);
+        $("#header-setting").hide();
     });
 
 });
