@@ -13,15 +13,6 @@ function ajaxGetAllNotes(sb) {
         notes = msg;
         // change dateDue in each note
         for (i = 0; i < notes.length; i++) {
-            /*
-            var note = notes[i];
-            var dateAsString = note.dateDue;
-            var month = note.dateDue.substring(5,7);
-            month = parseInt(month);
-            var day = note.dateDue.substring(8,10);
-            var year = note.dateDue.substring(0,4);
-            notes[i].dateDue = day + " " + monthNames[month-1] + ", " + year;
-            */
             notes[i].dateDue = notes[i].dateDue.substring(8,10) + " " + monthNames[parseInt(notes[i].dateDue.substring(5,7))-1] + ", " + notes[i].dateDue.substring(0,4);
         }
         if ((notes) && (notes.length > 0)) {
@@ -37,6 +28,19 @@ function ajaxGetAllNotes(sb) {
                     $("#notes").html(createNotesHtml(getNotesFiltered().sort(compareNotesPriority)));
                     break;
             }
+
+            $(".note-content .fa-chevron-up").hide();
+            $(".note-content-body").hide();
+            $(".note-content .fa-chevron-down").on("click", function() {
+                $(this).parent().children(".note-content .fa-chevron-up").show();
+                $(this).parent().children(".note-content .fa-chevron-down").hide();
+                $(this).parent().parent().children(".note-content-body").show("slow");
+            });
+            $(".note-content .fa-chevron-up").on("click", function() {
+                $(this).parent().children(".note-content .fa-chevron-up").hide();
+                $(this).parent().children(".note-content .fa-chevron-down").show();
+                $(this).parent().parent().children(".note-content-body").hide("slow");
+            });
         } else {
             notes = [];
             $("#notes").html("<p>No notes found.</p>");
@@ -57,7 +61,6 @@ function ajaxSaveNote(note) {
             data: JSON.stringify({"note": note})
         }).done(function (msg) {
             //note = jQuery.parseJSON(msg);
-            //renderEditor(note);
             $("#note-editor").hide();
             $("main").show();
             $("#header-sorting").show();
@@ -98,7 +101,6 @@ function ajaxDeleteNote(note){
     $("main").show();
     $("#header-sorting").show();
     renderSortedNotes();
-
 }
 
 

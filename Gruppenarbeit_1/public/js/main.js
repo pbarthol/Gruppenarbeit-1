@@ -89,7 +89,6 @@ function addNewNote() {
     // create new note
     var note = new Note();
     notes.push(note);
-    //return note;
     renderEditor(note)
 }
 
@@ -130,7 +129,6 @@ function changeNoteItem(id,name,value) {
                 utcDay = "0" + utcDay;
             }
             var dateDue = value.getUTCFullYear().toString() + '-' + utcMonth + '-' + utcDay;
-            //var dateDue = value.toISOString().substring(0,10); // only 10 chars -> e.g. "2016-06-02"
             notes[i]["dateDue"] = dateDue;
         }
     }
@@ -163,7 +161,6 @@ function quitEditor() {
 }
 
 function deleteNote(note_id) {
-    //localStorage.setItem("notes", JSON.stringify(notes));
     var note = getNoteByID(note_id);
     ajaxDeleteNote(note);
 }
@@ -174,7 +171,8 @@ function renderSortedNotes(sb) {
 }
 
 function renderEditor(note) {
-    // get Note from server
+    // note could be an object or an id
+    // get Note from RAM
     if(typeof note === 'string') {
         note = getNoteByID(note);
     }
@@ -189,7 +187,7 @@ function renderEditor(note) {
 }
 
 $(function () {
-    // get all notes from server and render this
+    // get all notes from server and render them
     renderSortedNotes("dateCreated");
 
     $("#header-setting").hide();

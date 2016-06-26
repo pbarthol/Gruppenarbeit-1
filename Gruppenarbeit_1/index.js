@@ -18,7 +18,6 @@ app.use(require("method-override")(function(req, res){
     }
 }));
 
-//app.use("/", require('./routes/indexRoutes.js'));
 app.use("/", require('./routes/notesRoutes.js'));
 app.use("/notes", require('./routes/notesRoutes.js'));
 app.use("/note", require('./routes/notesRoutes.js'));
